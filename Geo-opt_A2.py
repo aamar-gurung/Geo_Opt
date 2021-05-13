@@ -18,7 +18,7 @@ import Rhino.Geometry as rg
 #1.
 #compute face normals using rg.Mesh.FaceNormals.ComputeFaceNormals()
 #output the vectors to a
-mesh = rg.Mesh()
+
 m.FaceNormals.ComputeFaceNormals()
 a = m.FaceNormals
 
@@ -41,11 +41,21 @@ b = centers
 #calculate the angle between the sun and each FaceNormal using rg.Vector3d.VectorAngle()
 #store the angles in a list called angleList and output it to c
 
-angleList = []
+anglelist = []
 for i in range(len(b)):
-    vectorangle = rg.Vector3d.VectorAngle(rg.Vector3d(b[i], c)
-    angleList.append(vectorangle)
-c = angleList
+    vectorangle = rg.Vector3d.VectorAngle(rg.Vector3d(b[i]),s)
+    anglelist.append(vectorangle)
+c = anglelist
+
+dupmesh = rg.Mesh.Duplicate(a)
+
+exploded = []
+for i in range(dupmesh.Faces.Count):
+    meshface = dupmesh.Faces.ExtractFaces([0])
+    exploded.append(meshface)
+
+d = exploded
+
 
 #c = []
 
